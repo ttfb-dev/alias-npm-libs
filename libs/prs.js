@@ -36,6 +36,19 @@ class PrStorage {
     return await this.set(this.host + `/app/parameter/${parameter}`, data)
   }
 
+  async getNextInt(parameter) {
+    try {
+      const response = await fetch(this.host + `/increment/parameter/${parameter}`);
+
+      const result = await response.text();
+
+      return parseInt(result);
+    } catch (error) {
+      this.logger.error(error.message, {method: 'PrStorage.getNextInt', parameter});
+      return 0;
+    }
+  }
+
   async get(path, defValue) {
     try {
       const response = await fetch(path);
@@ -44,7 +57,7 @@ class PrStorage {
 
       return this.convertFromString(result);
     } catch (error) {
-      this.logger.error(error, {method: 'PrStorage.get', path});
+      this.logger.error(error.message, {method: 'PrStorage.get', path});
       return defValue;
     }
   }
@@ -57,7 +70,7 @@ class PrStorage {
       });
       return true;
     } catch (error) {
-      this.logger.error(error, {method: 'PrStorage.set', path, data});
+      this.logger.error(error.message, {method: 'PrStorage.set', path, data});
       return false;
     }
   }
