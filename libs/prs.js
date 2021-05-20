@@ -12,7 +12,7 @@ class PrStorage {
     this.logger = logger;
   }
 
-  async getUserParameter(user_id, parameter, defValue) {
+  async getUserParam(user_id, parameter, defValue) {
     return await this.get(this.host + `/user/${user_id}/parameter/${parameter}`, defValue);
   }
 
@@ -20,7 +20,7 @@ class PrStorage {
     return await this.set(this.host + `/user/${user_id}/parameter/${parameter}`, data)
   }
 
-  async getRoomParameter(room_id, parameter, defValue) {
+  async getRoomParam(room_id, parameter, defValue) {
     return await this.get(this.host + `/room/${room_id}/parameter/${parameter}`, defValue);
   }
 
@@ -28,7 +28,7 @@ class PrStorage {
     return await this.set(this.host + `/room/${room_id}/parameter/${parameter}`, data)
   }
 
-  async getAppParameter(parameter, defValue) {
+  async getAppParam(parameter, defValue) {
     return await this.get(this.host + `/app/parameter/${parameter}`, defValue);
   }
 
