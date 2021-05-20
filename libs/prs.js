@@ -12,24 +12,36 @@ class PrStorage {
     this.logger = logger;
   }
 
-  async getUserParam(user_id, parameter, defValue) {
-    return await this.get(this.host + `/user/${user_id}/parameter/${parameter}`, defValue);
+  async getUserParam(userId, parameter, defValue) {
+    return await this.get(this.host + `/user/${userId}/parameter/${parameter}`, defValue);
   }
 
-  async setUserParam(user_id, parameter, data) {
-    return await this.set(this.host + `/user/${user_id}/parameter/${parameter}`, data)
+  async delUserParam(userId, parameter) {
+    return await this.del(this.host + `/user/${userId}/parameter/${parameter}`);
   }
 
-  async getRoomParam(room_id, parameter, defValue) {
-    return await this.get(this.host + `/room/${room_id}/parameter/${parameter}`, defValue);
+  async setUserParam(userId, parameter, data) {
+    return await this.set(this.host + `/user/${userId}/parameter/${parameter}`, data)
   }
 
-  async setRoomParam(room_id, parameter, data) {
-    return await this.set(this.host + `/room/${room_id}/parameter/${parameter}`, data)
+  async getRoomParam(roomId, parameter, defValue) {
+    return await this.get(this.host + `/room/${roomId}/parameter/${parameter}`, defValue);
+  }
+
+  async delRoomParam(roomId, parameter) {
+    return await this.del(this.host + `/room/${roomId}/parameter/${parameter}`);
+  }
+
+  async setRoomParam(roomId, parameter, data) {
+    return await this.set(this.host + `/room/${roomId}/parameter/${parameter}`, data)
   }
 
   async getAppParam(parameter, defValue) {
     return await this.get(this.host + `/app/parameter/${parameter}`, defValue);
+  }
+
+  async delAppParam(parameter) {
+    return await this.del(this.host + `/app/parameter/${parameter}`);
   }
 
   async setAppParam(parameter, data) {
@@ -71,6 +83,18 @@ class PrStorage {
       return true;
     } catch (error) {
       this.logger.error(error.message, {method: 'PrStorage.set', path, data});
+      return false;
+    }
+  }
+  
+  async del(path) {
+    try {
+      await fetch(path, {
+        method: 'delete',
+      });
+      return true;
+    } catch (error) {
+      this.logger.error(error.message, {method: 'PrStorage.del', path});
       return false;
     }
   }
