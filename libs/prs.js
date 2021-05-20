@@ -16,20 +16,24 @@ class PrStorage {
     return await this.get(this.host + `/user/${user_id}/parameter/${parameter}`, defValue);
   }
 
-  async setUserParam(level, service, data) {
-    try {
-      await fetch(this.host + `/service/${service}/${level}`, {
-        method: 'post',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
+  async setUserParam(user_id, parameter, data) {
+    return await this.set(this.host + `/user/${user_id}/parameter/${parameter}`, data)
+  }
 
-      return true;
-    } catch (error) {
-      console.error(error);
-    }
+  async getRoomParameter(room_id, parameter, defValue) {
+    return await this.get(this.host + `/room/${room_id}/parameter/${parameter}`, defValue);
+  }
+
+  async setRoomParam(room_id, parameter, data) {
+    return await this.set(this.host + `/room/${room_id}/parameter/${parameter}`, data)
+  }
+
+  async getAppParameter(parameter, defValue) {
+    return await this.get(this.host + `/app/parameter/${parameter}`, defValue);
+  }
+
+  async setAppParam(parameter, data) {
+    return await this.set(this.host + `/app/parameter/${parameter}`, data)
   }
 
   async get(path, defValue) {
@@ -58,8 +62,10 @@ class PrStorage {
           'Content-Type': 'application/json',
         },
       });
+      return true;
     } catch (error) {
       this.logger.error(error, {method: 'PrStorage.set', path, data});
+      return false;
     }
   }
 }
