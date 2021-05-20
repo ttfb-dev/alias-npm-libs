@@ -40,9 +40,9 @@ class PrStorage {
     try {
       const response = await fetch(path);
 
-      const result = await response.json();
+      const result = await response.text();
 
-      return result;
+      return this.convertFromString(result);
     } catch (error) {
       this.logger.error(error, {method: 'PrStorage.get', path});
       return defValue;
@@ -50,22 +50,38 @@ class PrStorage {
   }
 
   async set(path, data) {
-    if (typeof data !== 'object') {
-      this.logger.error('PrStorage expect data as object', {method: 'PrStorage.set', path, data});
-      throw new Error('Prs expect data as object');
-    }
     try {
       await fetch(path, {
         method: 'post',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        body: this.convertToString(data),
       });
       return true;
     } catch (error) {
       this.logger.error(error, {method: 'PrStorage.set', path, data});
       return false;
+    }
+  }
+
+  convertToString(value) {
+    if (value instanceof Object) {
+      return JSON.stringify(value);
+    }
+    return String(value);
+  }
+
+  convertFromString(value) {
+    if (value.length === 0) {
+      return value;
+    }
+
+    if (!isNaN(value)) {
+      return value.includes('.') ? parseFloat(value) : parseInt(value);
+    }
+
+    try {
+      return JSON.parse(value);
+    } catch (e) {
+      return value;
     }
   }
 }
