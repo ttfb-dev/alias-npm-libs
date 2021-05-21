@@ -64,6 +64,9 @@ class PrStorage {
   async get(path, defValue) {
     try {
       const response = await fetch(path);
+      if (!response.ok) {
+        throw new Error(`Response status is not OK: ${response.status}`)
+      }
 
       const result = await response.text();
 
@@ -76,10 +79,13 @@ class PrStorage {
 
   async set(path, data) {
     try {
-      await fetch(path, {
+      const response = await fetch(path, {
         method: 'post',
         body: this.convertToString(data),
       });
+      if (!response.ok) {
+        throw new Error(`Response status is not OK: ${response.status}`)
+      }
       return true;
     } catch (error) {
       this.logger.error(error.message, {method: 'PrStorage.set', path, data});
@@ -89,9 +95,12 @@ class PrStorage {
   
   async del(path) {
     try {
-      await fetch(path, {
+      const response = await fetch(path, {
         method: 'delete',
       });
+      if (!response.ok) {
+        throw new Error(`Response status is not OK: ${response.status}`)
+      }
       return true;
     } catch (error) {
       this.logger.error(error.message, {method: 'PrStorage.del', path});
