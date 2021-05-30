@@ -64,7 +64,7 @@ class PrStorage {
   async get(path, defValue) {
     try {
       const response = await fetch(path);
-      if (!response.ok) {
+      if (!response.ok && response.status !== 404) { //404 - ok
         throw new Error(`Response status is not OK: ${response.status}`)
       }
 
