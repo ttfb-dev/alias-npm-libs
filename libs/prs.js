@@ -68,6 +68,10 @@ class PrStorage {
         throw new Error(`Response status is not OK: ${response.status}`)
       }
 
+      if (response.status === 404) {
+        return defValue;
+      }
+
       const result = await response.text();
 
       return this.convertFromString(result);
