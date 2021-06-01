@@ -36,6 +36,18 @@ class PrStorage {
     return await this.set(this.host + `/room/${roomId}/parameter/${parameter}`, data)
   }
 
+  async getRoomGameParam(roomId, gameId, parameter, defValue) {
+    return await this.get(this.host + `/room/${roomId}/game/${gameId}/parameter/${parameter}`, defValue);
+  }
+
+  async delRoomGameParam(roomId, gameId, parameter) {
+    return await this.del(this.host + `/room/${roomId}/game/${gameId}/parameter/${parameter}`);
+  }
+
+  async setRoomGameParam(roomId, gameId, parameter, data) {
+    return await this.set(this.host + `/room/${roomId}/game/${gameId}/parameter/${parameter}`, data)
+  }
+
   async getAppParam(parameter, defValue) {
     return await this.get(this.host + `/app/parameter/${parameter}`, defValue);
   }
