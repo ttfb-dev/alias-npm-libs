@@ -88,7 +88,7 @@ class PrStorage {
 
       const parsedResult = this.convertFromString(result);
 
-      return parsedResult === undefined ? defValue : parsedResult
+      return typeof parsedResult === 'undefined' ? defValue : parsedResult
     } catch (error) {
       this.logger.error(error.message, {method: 'PrStorage.get', path});
       return defValue;
