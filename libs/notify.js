@@ -4,9 +4,6 @@ class Notifier {
   host = 'http://notify-server-nodejs-alias';
 
   constructor (host) {
-    if (typeof host !== 'string' || host.length === 0) {
-      throw new Error(`Invalid notify params: host ${host}`)
-    }
     if (host) {
       this.host = host;
     }
