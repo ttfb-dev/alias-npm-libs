@@ -13,7 +13,7 @@ class Logger {
   }
 
   isValidLevel (level) {
-    return ['debug', 'info', 'warning', 'error', 'critical'].includes(level)
+    return ['debug', 'info', 'warning', 'error', 'critical', 'analytics'].includes(level)
   }
 
   isValidService (service) {
@@ -42,6 +42,10 @@ class Logger {
   async critical(message, data) {
     return await this.exec('critical', this.service, { ...data, message });
   }
+
+  async execAnalytics(action, data) {
+    return await this.execAnalytics(this.service, action, data);
+  }
   
   async exec(level, service, data) {
     if (!this.isValidLevel(level)) {
@@ -54,6 +58,26 @@ class Logger {
     }
     try {
       await fetch(this.host + `/service/${service}/${level}`, {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      return true;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  async execAnalytics(service, action, data) {
+    if (!this.isValidService(service)) {
+      console.log(`invalid service: ${service}`)
+      return ;
+    }
+    try {
+      await fetch(this.host + `/analytics/service/${service}/action/${action}`, {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
