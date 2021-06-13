@@ -2,8 +2,6 @@ import fetch from 'node-fetch';
 
 import Notify from './notify.js';
 
-const notifier = new Notify();
-
 class Logger {
   host = '';
   service = '';
@@ -44,7 +42,6 @@ class Logger {
   }
 
   async critical(message, data) {
-    await notifier.tgCritical(`${this.service}: ${message}, ${JSON.stringify(data)}`)
     return await this.exec('critical', this.service, { ...data, message });
   }
 

@@ -1,13 +1,15 @@
 import fetch from 'node-fetch';
 
-class Notify {
-  host = '';
+class Notifier {
+  host = 'http://notify-server-nodejs-alias';
 
-  constructor (host = 'http://notify-server-nodejs') {
+  constructor (host) {
     if (typeof host !== 'string' || host.length === 0) {
       throw new Error(`Invalid notify params: host ${host}`)
     }
-    this.host = host;
+    if (host) {
+      this.host = host;
+    }
   }
 
   async tgCritical(message) {
@@ -31,4 +33,4 @@ class Notify {
   }
 }
 
-export default Notify;
+export default Notifier;
