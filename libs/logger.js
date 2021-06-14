@@ -46,6 +46,10 @@ class Logger {
   async analytics(event, user_id, data = {}) {
     return await this.execAnalytics(this.service, event, user_id, data);
   }
+
+  async metrics(event, user_id, data = {}) {
+    return await this.execMetrics(this.service, event, user_id, data);
+  }
   
   async exec(level, service, data) {
     if (!this.isValidLevel(level)) {
@@ -78,6 +82,26 @@ class Logger {
     }
     try {
       await fetch(this.host + `/analytics/platform/${platform}/event/${event}/user_id/${user_id}`, {
+        method: 'post',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      return true;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  async execMetrics(platform, event, user_id, data) {
+    if (!this.isValidService(platform)) {
+      console.log(`invalid platform: ${platform}`)
+      return ;
+    }
+    try {
+      await fetch(this.host + `/metrics/platform/${platform}/event/${event}/user_id/${user_id}`, {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
