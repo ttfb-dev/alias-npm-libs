@@ -45,8 +45,8 @@ class Logger {
     return await this.exec('critical', this.service, { ...data, message });
   }
 
-  async execAnalytics(action, data) {
-    return await this.execAnalytics(this.service, action, data);
+  async analytics(action, user_id, data) {
+    return await this.execAnalytics(this.service, action, user_id, data);
   }
   
   async exec(level, service, data) {
@@ -73,13 +73,13 @@ class Logger {
     }
   }
   
-  async execAnalytics(service, action, data) {
+  async execAnalytics(service, action, user_id, data) {
     if (!this.isValidService(service)) {
       console.log(`invalid service: ${service}`)
       return ;
     }
     try {
-      await fetch(this.host + `/analytics/service/${service}/action/${action}`, {
+      await fetch(this.host + `/analytics/service/${service}/action/${action}/user_id/${user_id}`, {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
