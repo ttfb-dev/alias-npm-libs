@@ -1,7 +1,5 @@
 import fetch from 'node-fetch';
 
-import Notify from './notify.js';
-
 class Logger {
   host = '';
   service = '';
@@ -22,7 +20,7 @@ class Logger {
     // чтоб можно было слать пуши с фронта (frontend.client)
     // и с текущего микросервиса, в котором инициализирована либа
     // при добавлении ещё одного клиента добавлять руками сюда или переделать логику
-    return ['vk-miniapp-cli', this.service].includes(service)
+    return ['vk-miniapp', this.service].includes(service)
   }
 
   async debug(message, data) {
