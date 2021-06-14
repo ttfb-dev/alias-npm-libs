@@ -1,6 +1,6 @@
 {
   "name": "@ttfb/aliasgame",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,6 @@
   "author": "Dmitry Bobrov",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.1",
-    "ua-parser-js": "^0.7.28"
+    "node-fetch": "^2.6.1"
   }
 }

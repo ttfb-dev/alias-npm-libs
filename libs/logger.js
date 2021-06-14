@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import parser from 'ua-parser-js';
 
 class Logger {
   host = '';
@@ -45,11 +44,6 @@ class Logger {
   }
 
   async analytics(action, user_id, data = {}) {
-    if (data.hasOwnProperty('userAgent')) {
-      data.device = parser(data.userAgent);
-      delete data.userAgent;
-    }
-
     return await this.execAnalytics(this.service, action, user_id, data);
   }
   
