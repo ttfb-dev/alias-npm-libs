@@ -77,7 +77,7 @@ class Logger {
       return ;
     }
     try {
-      await fetch(this.host + `/analytics/platform/${service}/event/${event}/user_id/${user_id}`, {
+      await fetch(this.host + `/analytics/platform/${platform}/event/${event}/user_id/${user_id}`, {
         method: 'post',
         body: JSON.stringify(data),
         headers: {
