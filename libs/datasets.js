@@ -13,19 +13,19 @@ class Datasets {
   }
 
   async getById(datasetId) {
-    return await this.get(`/datasets/${datasetId}`);
+    return await this.get(this.host + `/datasets/${datasetId}`);
   }
 
   async getWordsById(datasetId) {
-    return await this.get(`/datasets/${datasetId}/words`);
+    return await this.get(this.host + `/datasets/${datasetId}/words`);
   }
 
   async getAll() {
-    return await this.get(`/datasets`);
+    return await this.get(this.host + `/datasets`);
   }
 
   async getAllGame() {
-    return await this.get(`/datasets/type/game`);
+    return await this.get(this.host + `/datasets/type/game`);
   }
 
   async get(path) {
