@@ -17,7 +17,7 @@ class GDatasets {
   }
 
   async deactivate(roomId, datasetId) {
-    return await this.post(this.host + `/room/${userId}/deactivate-dataset`, {datasetId});
+    return await this.post(this.host + `/room/${roomId}/deactivate-dataset`, {datasetId});
   }
 
   async getActive(roomId) {
