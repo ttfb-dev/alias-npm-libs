@@ -1,6 +1,6 @@
-import Datasets from "./Datasets";
+import BaseDatasets from "./BaseDatasets";
 
-export default class GameDatasets extends Datasets {
+export default class GameDatasets extends BaseDatasets {
   constructor(...args) {
     super(...args);
   }
