@@ -1,14 +1,8 @@
 import fetch from "node-fetch";
 
 export default class Datasets {
-  host = "http://datasets-server-nodejs";
-  logger = null;
-
-  constructor(logger, host = null) {
-    if (host) {
-      this.host = host;
-    }
-
+  constructor(logger, host = "http://datasets-server-nodejs") {
+    this.host = host;
     this.logger = logger;
   }
 
