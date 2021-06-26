@@ -28,7 +28,7 @@ export default class GameDatasets extends Datasets {
   async getActive(roomId) {
     return await this.get({
       host: `${this.host}/room/${roomId}/active`,
-      method: "GameDatasets.post",
+      method: "GameDatasets.get",
     });
   }
 }

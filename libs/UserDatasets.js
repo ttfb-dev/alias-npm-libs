@@ -28,7 +28,7 @@ export default class UserDatasets extends Datasets {
   async getActive(roomId) {
     return await this.get({
       host: `${this.host}/user/${roomId}/active`,
-      method: "UserDatasets.post",
+      method: "UserDatasets.get",
     });
   }
 }

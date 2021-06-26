@@ -22,12 +22,6 @@ export default class Datasets {
     return await this.get({ host: `${this.host}/datasets/type/game` });
   }
 
-  async activate() {}
-
-  async deactivate() {}
-
-  async getActive() {}
-
   async get({ path, method = null }) {
     try {
       const response = await fetch(path);
