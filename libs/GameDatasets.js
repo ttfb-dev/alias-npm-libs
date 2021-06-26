@@ -1,8 +1,8 @@
 import Datasets from "./Datasets";
 
 export default class GameDatasets extends Datasets {
-  constructor() {
-    super();
+  constructor(...args) {
+    super(...args);
   }
 
   async activate(roomId, id) {
