@@ -9,7 +9,7 @@ export default class UserDatasets extends BaseDatasets {
     return await this.post({
       path: `${this.host}/user/${roomId}/activate-dataset`,
       data: {
-        id,
+        datasetId: id,
       },
       method: "UserDatasets.post",
     });
@@ -19,7 +19,7 @@ export default class UserDatasets extends BaseDatasets {
     return await this.post({
       path: `${this.host}/user/${roomId}/deactivate-dataset`,
       data: {
-        id,
+        datasetId: id,
       },
       method: "UserDatasets.post",
     });
