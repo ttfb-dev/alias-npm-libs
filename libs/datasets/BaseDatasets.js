@@ -4,12 +4,11 @@ export default class BaseDatasets {
   constructor(logger, host = "http://datasets-server-nodejs") {
     this.logger = logger;
     this.host = host;
-    this.fetch = fetch;
   }
 
   async get({ path, method = null }) {
     try {
-      const response = await this.fetch(path);
+      const response = await fetch(path);
       if (!response.ok) {
         throw new Error(`Response status is not OK: ${response.status}`);
       }
@@ -26,7 +25,7 @@ export default class BaseDatasets {
 
   async post({ path, data, method = null }) {
     try {
-      const response = await this.fetch(path, {
+      const response = await fetch(path, {
         method: "post",
         body: JSON.stringify(data),
         headers: {
