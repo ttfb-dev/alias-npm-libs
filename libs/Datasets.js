@@ -7,19 +7,19 @@ export default class Datasets {
   }
 
   async getById(id) {
-    return await this.get({ host: `${this.host}/datasets/${id}` });
+    return await this.get({ path: `${this.host}/datasets/${id}` });
   }
 
   async getWordsById(id) {
-    return await this.get({ host: `${this.host}/datasets/${id}/words` });
+    return await this.get({ path: `${this.host}/datasets/${id}/words` });
   }
 
   async getAll() {
-    return await this.get({ host: `${this.host}/datasets` });
+    return await this.get({ path: `${this.host}/datasets` });
   }
 
   async getAllGame() {
-    return await this.get({ host: `${this.host}/datasets/type/game` });
+    return await this.get({ path: `${this.host}/datasets/type/game` });
   }
 
   async get({ path, method = null }) {

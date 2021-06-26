@@ -7,7 +7,7 @@ export default class UserDatasets extends Datasets {
 
   async activate(roomId, id) {
     return await this.post({
-      host: `${this.host}/user/${roomId}/activate-dataset`,
+      path: `${this.host}/user/${roomId}/activate-dataset`,
       data: {
         id,
       },
@@ -17,7 +17,7 @@ export default class UserDatasets extends Datasets {
 
   async deactivate(roomId, id) {
     return await this.post({
-      host: `${this.host}/user/${roomId}/deactivate-dataset`,
+      path: `${this.host}/user/${roomId}/deactivate-dataset`,
       data: {
         id,
       },
@@ -27,7 +27,7 @@ export default class UserDatasets extends Datasets {
 
   async getActive(roomId) {
     return await this.get({
-      host: `${this.host}/user/${roomId}/active`,
+      path: `${this.host}/user/${roomId}/active`,
       method: "UserDatasets.get",
     });
   }
