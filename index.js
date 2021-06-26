@@ -1,15 +1,8 @@
-import Logger from './libs/logger.js';
-import PrStorage from './libs/prs.js';
-import Notifier from './libs/notify.js';
-import UDatasets from './libs/uDatasets.js';
-import GDatasets from './libs/gDatasets.js';
-import Datasets from './libs/datasets.js';
+import Logger from "./libs/logger.js";
+import PrStorage from "./libs/prs.js";
+import Notifier from "./libs/notify.js";
+import UDatasets from "./libs/UserDatasets.js";
+import GDatasets from "./libs/GameDatasets.js";
+import Datasets from "./libs/datasets.js";
 
-export {
-  Logger,
-  PrStorage,
-  Notifier,
-  UDatasets,
-  GDatasets,
-  Datasets,
-};
+export { Logger, PrStorage, Notifier, UDatasets, GDatasets, Datasets };

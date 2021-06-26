@@ -1,10 +1,10 @@
-import fetch from 'node-fetch';
+import fetch from "node-fetch";
 
-class Datasets {
-  host = 'http://datasets-server-nodejs';
-  logger = null
+export default class Datasets {
+  host = "http://datasets-server-nodejs";
+  logger = null;
 
-  constructor (logger, host = null) {
+  constructor(logger, host = null) {
     if (host) {
       this.host = host;
     }
@@ -12,54 +12,68 @@ class Datasets {
     this.logger = logger;
   }
 
-  async getById(datasetId) {
-    return await this.get(this.host + `/datasets/${datasetId}`);
+  async getById(id) {
+    return await this.get({ host: `${this.host}/datasets/${id}` });
   }
 
-  async getWordsById(datasetId) {
-    return await this.get(this.host + `/datasets/${datasetId}/words`);
+  async getWordsById(id) {
+    return await this.get({ host: `${this.host}/datasets/${id}/words` });
   }
 
   async getAll() {
-    return await this.get(this.host + `/datasets`);
+    return await this.get({ host: `${this.host}/datasets` });
   }
 
   async getAllGame() {
-    return await this.get(this.host + `/datasets/type/game`);
+    return await this.get({ host: `${this.host}/datasets/type/game` });
   }
 
-  async get(path) {
+  async activate() {}
+
+  async deactivate() {}
+
+  async getActive() {}
+
+  async get({ path, method = null }) {
     try {
       const response = await fetch(path);
       if (!response.ok) {
-        throw new Error(`Response status is not OK: ${response.status}`)
+        throw new Error(`Response status is not OK: ${response.status}`);
       }
 
       return await response.json();
     } catch (error) {
-      this.logger.critical(error.message, {method: 'Datasets.get', path});
-      return ;
+      this.logger.critical(error.message, {
+        method: method ?? "Datasets.get",
+        path,
+      });
+      return;
     }
   }
 
-  async post(path, data) {
+  async post({ path, data, method = null }) {
     try {
       const response = await fetch(path, {
-        method: 'post',
+        method: "post",
         body: JSON.stringify(data),
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       });
+
       if (!response.ok) {
-        throw new Error(`Response status is not OK: ${response.status}`)
+        throw new Error(`Response status is not OK: ${response.status}`);
       }
+
       return true;
     } catch (error) {
-      this.logger.critical(error.message, {method: 'Datasets.post', path, data});
+      this.logger.critical(error.message, {
+        method: method ?? "Datasets.post",
+        path,
+        data,
+      });
+
       return false;
     }
   }
 }
-
-export default Datasets;
