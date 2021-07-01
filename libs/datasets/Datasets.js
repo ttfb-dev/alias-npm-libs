@@ -19,6 +19,14 @@ export default class Datasets extends BaseDatasets {
     });
   }
 
+  async setWordsById(id, words) {
+    return await this.get({
+      path: `${this.host}/datasets/${id}/words`,
+      method: 'Datasets.getWordsById',
+      data: words,
+    });
+  }
+
   async getAll() {
     return await this.get({
       path: `${this.host}/datasets`,
@@ -33,10 +41,11 @@ export default class Datasets extends BaseDatasets {
     });
   }
 
-  async setAll() {
+  async setAll(datasets) {
     return await this.post({
       path: `${this.host}/datasets`,
-      method: 'Datasets.setAll'
+      method: 'Datasets.setAll',
+      data: datasets,
     })
   }
 }
