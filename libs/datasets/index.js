@@ -1,3 +1,3 @@
-export { default as Datasets } from "./Datasets";
-export { default as UDatasets } from "./UserDatasets";
-export { default as GDatasets } from "./GameDatasets";
+export { default as Datasets } from "./Datasets.js";
+export { default as UDatasets } from "./UserDatasets.js";
+export { default as GDatasets } from "./GameDatasets.js";

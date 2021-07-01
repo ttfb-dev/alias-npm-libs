@@ -1,4 +1,4 @@
-import BaseDatasets from "./BaseDatasets";
+import BaseDatasets from "./BaseDatasets.js";
 
 export default class UserDatasets extends BaseDatasets {
   constructor(...args) {
