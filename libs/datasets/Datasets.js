@@ -20,7 +20,7 @@ export default class Datasets extends BaseDatasets {
   }
 
   async setWordsById(id, words) {
-    return await this.get({
+    return await this.post({
       path: `${this.host}/datasets/${id}/words`,
       method: 'Datasets.getWordsById',
       data: words,
