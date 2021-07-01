@@ -11,7 +11,7 @@ export default class GameDatasets extends BaseDatasets {
       data: {
         datasetId: id,
       },
-      method: "GameDatasets.post",
+      method: "GameDatasets.activate",
     });
   }
 
@@ -21,14 +21,14 @@ export default class GameDatasets extends BaseDatasets {
       data: {
         datasetId: id,
       },
-      method: "GameDatasets.post",
+      method: "GameDatasets.deactivate",
     });
   }
 
   async getActive(roomId) {
     return await this.get({
       path: `${this.host}/room/${roomId}/active`,
-      method: "GameDatasets.get",
+      method: "GameDatasets.getActive",
     });
   }
 }

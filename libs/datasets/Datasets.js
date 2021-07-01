@@ -8,28 +8,35 @@ export default class Datasets extends BaseDatasets {
   async getById(id) {
     return await this.get({
       path: `${this.host}/datasets/${id}`,
-      method: "Datasets.get",
+      method: 'Datasets.getById',
     });
   }
 
   async getWordsById(id) {
     return await this.get({
       path: `${this.host}/datasets/${id}/words`,
-      method: "Datasets.get",
+      method: 'Datasets.getWordsById',
     });
   }
 
   async getAll() {
     return await this.get({
       path: `${this.host}/datasets`,
-      method: "Datasets.get",
+      method: 'Datasets.getAll',
     });
   }
 
   async getAllGame() {
     return await this.get({
       path: `${this.host}/datasets/type/game`,
-      method: "Datasets.get",
+      method: "Datasets.getAllGame",
     });
+  }
+
+  async setAll() {
+    return await this.post({
+      path: `${this.host}/datasets`,
+      method: 'Datasets.setAll'
+    })
   }
 }

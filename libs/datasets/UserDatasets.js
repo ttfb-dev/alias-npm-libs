@@ -11,7 +11,7 @@ export default class UserDatasets extends BaseDatasets {
       data: {
         datasetId: id,
       },
-      method: "UserDatasets.post",
+      method: "UserDatasets.activate",
     });
   }
 
@@ -21,14 +21,14 @@ export default class UserDatasets extends BaseDatasets {
       data: {
         datasetId: id,
       },
-      method: "UserDatasets.post",
+      method: "UserDatasets.deactivate",
     });
   }
 
   async getActive(roomId) {
     return await this.get({
       path: `${this.host}/user/${roomId}/active`,
-      method: "UserDatasets.get",
+      method: "UserDatasets.getActive",
     });
   }
 }
