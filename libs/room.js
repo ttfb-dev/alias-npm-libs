@@ -5,6 +5,8 @@ export default class Room extends BaseRequest {
   logger = null;
 
   constructor(logger, host = null) {
+    super();
+
     if (host) {
       this.host = host;
     }
