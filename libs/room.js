@@ -14,6 +14,12 @@ export default class Room extends BaseRequest {
     this.logger = logger;
   }
 
+  async getDefaultSettings(roomId) {
+    return await this.get({
+      path: this.host + `/room/${roomId}/settings/default`,
+    });
+  }
+
   async getSettings(roomId) {
     return await this.get({ path: this.host + `/room/${roomId}/settings` });
   }
