@@ -1,3 +1,5 @@
+import fetch from "node-fetch";
+
 export default class BaseJsonRequest {
   async get({ path, method = null }) {
     try {
