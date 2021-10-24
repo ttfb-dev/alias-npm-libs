@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
+import BaseJsonRequest from './BaseJsonRequest';
 
-class EventBus {
+class EventBus extends BaseJsonRequest {
 
   async newEvent (event, data) {
     const hosts = event.hosts;
@@ -14,47 +14,6 @@ class EventBus {
       })
     }
   };
-  
-  async get({ path }) {
-    try {
-      const response = await fetch(path);
-      if (!response.ok) {
-        throw new Error(`Response status is not OK: ${response.status}`);
-      }
-
-      return await response.json();
-    } catch (error) {
-      this.logger.critical(error.message, {
-        path,
-      });
-      return;
-    }
-  }
-
-  async post({ path, data }) {
-    try {
-      const response = await fetch(path, {
-        method: "post",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error(`Response status is not OK: ${response.status}`);
-      }
-
-      return true;
-    } catch (error) {
-      this.logger.critical(error.message, {
-        path,
-        data,
-      });
-
-      return false;
-    }
-  }
 }
 
 export class Event {

@@ -1,4 +1,4 @@
-import BaseRequest from "./BaseJsonRequest";
+import BaseRequest from "./BaseJsonRequest.js";
 
 export default class Room extends BaseRequest {
   host = "http://rooms-nodejs";
