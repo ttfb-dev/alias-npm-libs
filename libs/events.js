@@ -73,15 +73,15 @@ const hosts = {
 };
 
 export const EVENTS = {
-  USER_PLAYS_GAME_HALLOWEEN_2021 = {
+  USER_PLAYS_GAME_HALLOWEEN_2021: {
     name: 'user_plays_game_halloween_2021',
     hosts: [hosts.datasets]
   },
-  USER_FORWARD_POST_HALLOWEEN_2021 = {
+  USER_FORWARD_POST_HALLOWEEN_2021: {
     name: 'user_forward_post_halloween_2021',
     hosts: [hosts.datasets],
   },
-  USER_COMPLETE_EVENT_HALLOWEEN_2021 = {
+  USER_COMPLETE_EVENT_HALLOWEEN_2021: {
     name: 'user_complete_event_halloween_2021',
     hosts: [hosts.logux],
   }
