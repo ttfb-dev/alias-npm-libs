@@ -1,6 +1,6 @@
-import BaseRequest from "./BaseJsonRequest.js";
+import BaseJsonRequest from "./BaseJsonRequest.js";
 
-export default class Room extends BaseRequest {
+export default class Room extends BaseJsonRequest {
   host = "http://rooms-nodejs";
   logger = null;
 

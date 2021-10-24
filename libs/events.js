@@ -1,4 +1,4 @@
-import BaseJsonRequest from './BaseJsonRequest';
+import BaseJsonRequest from './BaseJsonRequest.js';
 
 class EventBus extends BaseJsonRequest {
 
