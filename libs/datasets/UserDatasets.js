@@ -5,9 +5,9 @@ export default class UserDatasets extends BaseDatasets {
     super(...args);
   }
 
-  async activate(roomId, id) {
+  async activate(userId, id) {
     return await this.post({
-      path: `${this.host}/user/${roomId}/activate-dataset`,
+      path: `${this.host}/user/${userId}/activate-dataset`,
       data: {
         datasetId: id,
       },
@@ -15,9 +15,9 @@ export default class UserDatasets extends BaseDatasets {
     });
   }
 
-  async deactivate(roomId, id) {
+  async deactivate(userId, id) {
     return await this.post({
-      path: `${this.host}/user/${roomId}/deactivate-dataset`,
+      path: `${this.host}/user/${userId}/deactivate-dataset`,
       data: {
         datasetId: id,
       },
@@ -25,10 +25,17 @@ export default class UserDatasets extends BaseDatasets {
     });
   }
 
-  async getActive(roomId) {
+  async getActive(userId) {
     return await this.get({
-      path: `${this.host}/user/${roomId}/active`,
+      path: `${this.host}/user/${userId}/active`,
       method: "UserDatasets.getActive",
+    });
+  }
+
+  async getFixed(userId) {
+    return await this.get({
+      path: `${this.host}/user/${userId}/fixed`,
+      method: "UserDatasets.getFixed",
     });
   }
 }
